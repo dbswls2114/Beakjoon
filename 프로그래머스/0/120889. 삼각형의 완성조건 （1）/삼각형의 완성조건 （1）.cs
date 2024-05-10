@@ -8,13 +8,6 @@ foreach (int side in sides)
 {
     if (high < side) high = side;
 }
-if(high >= sides.Sum() - high)
-{
-    return 2;
-}
-else
-{
-    return 1;
-}
+return high >= sides.Sum() - high ? 2 : 1;
     }
 }
