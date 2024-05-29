@@ -1,31 +1,32 @@
-string[] s = Console.ReadLine().Split();
-int n = int.Parse(s[0]);
-int k = int.Parse(s[1]);
-long[] a = new long[k];
-for (int i = 0; i < n; i++)
+string[] a = Console.ReadLine().Split();
+int K = int.Parse(a[0]);
+int N = int.Parse(a[1]);
+long[] input = new long[K];
+
+for (int i = 0; i < input.Length; i++)
 {
-    a[i] = int.Parse(Console.ReadLine());
+    input[i] = int.Parse(Console.ReadLine());
 }
 
-long max = a.Max();
-long low = 1;
-long high = max;
-while (low <= high)
-{
-    long mid = (low + high) / 2;
-    long count = 0;
-    for (int i = 0; i < k; i++)
-    {
-        count += a[i] / mid;
-    }
+Array.Sort(input);
+long left = 1;
+long right = input[input.Length - 1];
 
-    if (count < k)
+while (left <= right)
+{
+    long mid = (left + right) / 2;
+    long count = 0;
+    for (int i = 0; i < input.Length; i++)
     {
-        high = mid - 1;
+        count += input[i] / mid;
+    }
+    if (count < N)
+    {
+        right = mid - 1;
     }
     else
     {
-        low = mid + 1;
+        left = mid + 1;
     }
 }
-Console.WriteLine(high);
+Console.WriteLine(right);
